@@ -1,3 +1,6 @@
+import 'allocator/arena'
+export { allocate_memory }
+
 import { Entity, store } from '@graphprotocol/graph-ts'
 import {
   LinkAdded,
@@ -10,14 +13,15 @@ export function linkAdded(event: LinkAdded): void {
   link.setAddress('source', event.params.source)
   link.setAddress('target', event.params.target)
 
-  let key = `${event.params.source}${event.params.target}`
+  let key = event.params.source.toHex() + event.params.target.toHex()
 
+  link.setString('id', key)
   store.set('Link', key, link)
 }
 
 export function linkRemoved(event: LinkRemoved): void {
 
-  let key = `${event.params.source}${event.params.target}`
+  let key = event.params.source.toHex() + event.params.target.toHex()
 
   store.set('Link', key, null)
 }

@@ -5,7 +5,7 @@
     "build": "graph build subgraph.yaml",
     "build-ipfs": "graph build --ipfs /ip4/127.0.0.1/tcp/5001 subgraph.yaml",
     "deploy":
-      "graph deploy --api-key <KEY> --ipfs /ip4/35.239.68.192/tcp/5001 --node http://104.198.242.70:8020/ --subgraph-name trustability subgraph.yaml"
+      "graph deploy --api-key 01e364684d0d46c1b2cfbeea5078365d --ipfs /ip4/35.239.68.192/tcp/5001 --node http://104.198.242.70:8020/ --subgraph-name trustability subgraph.yaml"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.3.1",
