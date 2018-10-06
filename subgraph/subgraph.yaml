@@ -2,23 +2,23 @@ specVersion: 0.0.1
 schema:
   file: ./schema.graphql
 dataSources:
-- kind: ethereum/contract
-  name: Trustability
+  - kind: ethereum/contract
+  name: trustability
   source:
-    address: "0xa3260d14aabffe747992f650b2bd5c3029da4b68"
-    abi: Trust
+    address: ''
+    abi: trust
   mapping:
-    kind: ethereum/events
-    apiVersion: 0.0.1
-    language: wasm/assemblyscript
-    entities:
-    - Token
-    abis:
-    - name: Trust
-      file: ../truffle/build/contracts/TrustGraph.json
-    eventHandlers:
-    - event: LinkAdded(address,address)
-      handler: handleLinkAdded
-    - event: LinkRemoved(address,address)
-      handler: handleLinkRemoved
-    file: ./src/mapping.ts
+      kind: ethereum/events
+      apiVersion: 0.0.1
+      language: wasm/assemblyscript
+      file: ./src/trust.ts
+      entities:
+        - Link
+      abis:
+        - name: trust
+          file: ./abis/TrustGraph.json
+      eventHandlers:
+        - event: LinkAdded(address, address)
+          handler: linkAdded
+        - event: LinkRemoved(address, address)
+          handler: linkRemoved
