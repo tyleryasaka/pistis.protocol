@@ -1,0 +1,19 @@
+{
+  "name": "trustability",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyleryasaka/trustability.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tyleryasaka/trustability/issues"
+  },
+  "homepage": "https://github.com/tyleryasaka/trustability#readme"
+}
