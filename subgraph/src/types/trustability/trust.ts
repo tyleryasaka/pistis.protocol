@@ -71,3 +71,21 @@ export class trust extends SmartContract {
     return result[0].toBoolean();
   }
 }
+
+export function linkAdded(event: LinkAdded): void {
+    let link = new Entity()
+
+    link.setAddress('source', event.params.source)
+    link.setAddress('target', event.params.target)
+
+    store.set('Link', event.params.source + event.params.target, link)
+}
+
+export function linkRemoved(event: LinkRemoved): void {
+    let link = new Entity()
+
+    link.setAddress('source', event.params.source)
+    link.setAddress('target', event.params.target)
+
+    store.set('Link', event.params.source + event.params.target, null)
+}
