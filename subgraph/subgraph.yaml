@@ -11,7 +11,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.1
       language: wasm/assemblyscript
-      file: ./src/trust.ts
+      file: ./src/types/trustability/trust.ts
       entities:
         - Link
       abis:
