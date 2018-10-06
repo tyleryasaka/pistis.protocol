@@ -5,7 +5,7 @@ dataSources:
   - kind: ethereum/contract
   name: trustability
   source:
-    address: ''
+    address: '0xa3260d14aabffe747992f650b2bd5c3029da4b68'
     abi: trust
   mapping:
       kind: ethereum/events
