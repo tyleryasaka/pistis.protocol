@@ -27,12 +27,9 @@ export default class Trustability {
 
     var myRequest = new Request('http://104.198.242.70/trustability/graphql');
 
-    fetch(myRequest, myInit)
-    .then(r => r.json())
-    .then((data) => {
-      const graph = makeGraph(data.data.links)
-      const result = calculate(graph, from, to)
-      callback(result)
-    });
+    const res = await fetch(myRequest, myInit)
+    const data = await res.json()
+    const graph = makeGraph(data.data.links)
+    return calculate(graph, from, to)
   }
 }

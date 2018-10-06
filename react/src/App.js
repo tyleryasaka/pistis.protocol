@@ -18,6 +18,7 @@ import Threddit from './Threddit';
 
 import TrustGraph from '../../truffle/build/contracts/TrustGraph.json'
 import { getLinks } from './utils/trustGraph'
+import Trustability from '../../trustability.js/index'
 
 async function getWeb3() {
   let web3 = window.web3
@@ -79,8 +80,16 @@ class App extends Component {
     const accounts = await web3.eth.getAccounts()
     const trustGraph = await getDeployed()
     const links = await getLinks()
-    console.log(links)
-    this.setState({ web3, accounts, trustGraph, links })
+    console.log('links', links)
+
+    const trustability = new Trustability()
+    const trustabilityScore = await trustability.get(
+      '0x627306090abab3a6e1400e9345bc60c78a8bef57',
+      '0x8e0f9edb52f762fc93a154953b67d3f7926ab1f6'
+    )
+    console.log('trustability', trustabilityScore)
+
+    this.setState({ web3, accounts, trustGraph, links, trustabilityScore })
 
     // to add a link:
     // trustGraph.addLink('0xf17f52151ebef6c7334fad080c5704d77216b732', { from: accounts[0] })
@@ -91,7 +100,7 @@ class App extends Component {
 
   render() {
     const { classes, theme } = this.props;
-    const { value, web3 } = this.state;
+    const { value, web3, accounts, trustGraph, links } = this.state;
 
     return (
       <div className="App">
