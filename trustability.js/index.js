@@ -11,7 +11,6 @@ function makeGraph(links) {
 
 export default class Trustability {
   async get(from, to, callback) {
-    console.log(from, to)
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     myHeaders.append('Accept', 'application/json');

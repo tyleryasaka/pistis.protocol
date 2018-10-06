@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Trustability from '../../trustability.js/index'
 
 import TrustGraph from '../../truffle/build/contracts/TrustGraph.json'
 
@@ -15,6 +16,10 @@ const styles = theme => ({
 
 class TrustManagement extends Component {
   render() {
+    const trustability = new Trustability()
+    trustability.get('0x627306090abab3a6e1400e9345bc60c78a8bef57', '0x8e0f9edb52f762fc93a154953b67d3f7926ab1f6', (data) => {
+      console.log('res', data)
+    })
     const { classes } = this.props;
 
     return (
