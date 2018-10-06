@@ -11,6 +11,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
 import TrustManagement from './TrustManagement';
+import Tab2 from './Tab2';
+import Tab3 from './Tab3';
 
 import TrustGraph from '../../truffle/build/contracts/TrustGraph.json'
 
@@ -68,8 +70,8 @@ class App extends Component {
           </Tabs>
         </AppBar>
         {value === 0 && <TabContainer><TrustManagement /></TabContainer>}
-        {value === 1 && <TabContainer>Item Two</TabContainer>}
-        {value === 2 && <TabContainer>Item Three</TabContainer>}
+        {value === 1 && <TabContainer><Tab2 /></TabContainer>}
+        {value === 2 && <TabContainer><Tab3 /></TabContainer>}
       </div>
     );
   }
