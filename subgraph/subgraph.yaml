@@ -2,24 +2,23 @@ specVersion: 0.0.1
 schema:
   file: ./schema.graphql
 dataSources:
-  - kind: ethereum/contract
-    name: ENSRegistrar
-    source:
-      address: '0x314159265dd8dbb310642f98f50c066173c1259b'
-      abi: EnsRegistrar
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.1
-      language: wasm/assemblyscript
-      file: ./src/ensRegistrar.ts
-      entities:
-        - EnsDomain
-        - Transfer
-      abis:
-        - name: EnsRegistrar
-          file: ./abis/EtherscanAbi.json
-      eventHandlers:
-        - event: Transfer(bytes32,address)
-          handler: transfer
-        - event: NewOwner(bytes32,bytes32,address)
-          handler: newOwner
+- kind: ethereum/contract
+  name: Trustability
+  source:
+    address: "0xa3260d14aabffe747992f650b2bd5c3029da4b68"
+    abi: Trust
+  mapping:
+    kind: ethereum/events
+    apiVersion: 0.0.1
+    language: wasm/assemblyscript
+    entities:
+    - Token
+    abis:
+    - name: Trust
+      file: ../truffle/build/contracts/TrustGraph.json
+    eventHandlers:
+    - event: LinkAdded(address,address)
+      handler: handleLinkAdded
+    - event: LinkRemoved(address,address)
+      handler: handleLinkRemoved
+    file: ./src/mapping.ts
