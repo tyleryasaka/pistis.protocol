@@ -1,0 +1,23 @@
+{
+  "name": "trustability.js",
+  "version": "0.0.0",
+  "description": "Query trustability scores from the Ethereum blockchain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyleryasaka/trustability.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tyleryasaka/trustability/issues"
+  },
+  "homepage": "https://github.com/tyleryasaka/trustability#readme",
+  "dependencies": {
+    "@dagrejs/graphlib": "^2.1.4",
+    "underscore": "^1.9.1"
+  }
+}
