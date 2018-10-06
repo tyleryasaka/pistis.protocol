@@ -2,10 +2,10 @@ specVersion: 0.0.1
 schema:
   file: ./schema.graphql
 dataSources:
-  - kind: ethereum/contract
+- kind: ethereum/contract
   name: trustability
   source:
-    address: '0xa3260d14aabffe747992f650b2bd5c3029da4b68'
+    address: "0xa3260d14aabffe747992f650b2bd5c3029da4b68"
     abi: trust
   mapping:
       kind: ethereum/events
