@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import TrustGraph from '../../build/truffle/build/contracts/TrustGraph.json'
+import TrustGraph from '../../truffle/build/contracts/TrustGraph.json'
 
 class App extends Component {
   render() {
