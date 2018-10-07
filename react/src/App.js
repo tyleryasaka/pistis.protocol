@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../public/logo.jpg';
 import './App.css';
 import PropTypes from 'prop-types';
 import Web3 from 'web3';
@@ -62,6 +62,10 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  logo: {
+    width: '500px',
+    maxWidth: '100%'
+  }
 });
 
 class App extends Component {
@@ -109,14 +113,7 @@ class App extends Component {
             <Tab label="Threddit" />
           </Tabs>
         </AppBar>
-<<<<<<< Updated upstream
-        {value === 0 && (
-=======
-        {value === 0 && <TabContainer><TrustManagement web3={web3} accounts={accounts} links={links} trustGraph={trustGraph} /></TabContainer>}
-        {value === 1 && (
->>>>>>> Stashed changes
-          <Tab2 links={links} accounts={accounts} />
-        )}
+        {value === 0 && (<Tab2 links={links} accounts={accounts} />)}
         {value === 1 && <TabContainer><TrustManagement web3={web3} accounts={accounts} links={links} trustGraph={trustGraph} /></TabContainer>}
         {value === 2 && <TabContainer><Threddit accounts={accounts} /></TabContainer>}
       </div>

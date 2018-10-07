@@ -50,7 +50,7 @@ const styles = theme => ({
 const threads = [
   {
     id: '0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef',
-    text: '"Journey of a thousand miles begins with one step."',
+    text: '"The journey of a thousand miles begins with one step."',
     author: "Lao Tzu",
     votes: [
       {
@@ -65,8 +65,8 @@ const threads = [
   },
   {
     id: '0x821aea9a577a9b44299b9c15c88cf3087f3b5544',
-    text: '“Everything is hard before is easy.”',
-    author: "Brian Tracy",
+    text: '“Life is not measured by the number of breaths we take, but by the moments that take our breath away.”',
+    author: "Maya Angelou",
     votes: [
       {
         type: 'up',
@@ -80,7 +80,7 @@ const threads = [
   },
   {
     id: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
-    text: '"Shipping beats perfection."',
+    text: '"An infinite number of mathematicians walk into a bar. The first one orders a beer. The second one orders half a beer. The third one orders a fourth of a beer. The bartender stops them, pours two beers and says, "You guys should know your limits."﻿',
     votes: [
       {
         type: 'up',
@@ -152,8 +152,6 @@ class Thredit extends Component {
               avatar={
                 <Avatar src={avatarPic} className={classes.avatar} />
               }
-              title={thread.id}
-              subheader="September 14, 2016"
             />
             <CardContent>
               <Typography component="p" variant="headline">
