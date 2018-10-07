@@ -12,13 +12,15 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
-import TrustManagement from './TrustManagement';
-import Tab2 from './Tab2';
-import Threddit from './Threddit';
+import TrustManagement from './componets/TrustManagement';
+import Tab2 from './componets/Tab2';
+import Threddit from './componets/Threddit';
 
 import TrustGraph from '../../truffle/build/contracts/TrustGraph.json'
 import { getLinks } from './utils/trustGraph'
 import Trustability from '../../trustability.js/index'
+
+const CONTRACT_ADDRESS = '0xa3260d14aabffe747992f650b2bd5c3029da4b68'
 
 async function getWeb3() {
   let web3 = window.web3
@@ -29,6 +31,7 @@ async function getWeb3() {
     console.log('Injected web3 detected.');
     return new Web3(web3.currentProvider)
   }
+  console.error('web3 not found')
 }
 
 async function getDeployed(web3, address) {
@@ -78,18 +81,18 @@ class App extends Component {
   async componentDidMount() {
     const web3 = await getWeb3()
     const accounts = await web3.eth.getAccounts()
-    const trustGraph = await getDeployed()
+    const trustGraph = await getDeployed(web3, CONTRACT_ADDRESS)
     const links = await getLinks()
-    console.log('links', links)
+    // console.log('links', links)
 
-    const trustability = new Trustability()
-    const trustabilityScore = await trustability.get(
-      '0x627306090abab3a6e1400e9345bc60c78a8bef57',
-      '0x8e0f9edb52f762fc93a154953b67d3f7926ab1f6'
-    )
-    console.log('trustability', trustabilityScore)
+    // const trustability = new Trustability()
+    // const trustabilityScore = await trustability.get(
+    //   '0x627306090abab3a6e1400e9345bc60c78a8bef57',
+    //   '0x8e0f9edb52f762fc93a154953b67d3f7926ab1f6'
+    // )
+    // console.log('trustability', trustabilityScore)
 
-    this.setState({ web3, accounts, trustGraph, links, trustabilityScore })
+    this.setState({ web3, accounts, trustGraph, links })
 
     // to add a link:
     // trustGraph.addLink('0xf17f52151ebef6c7334fad080c5704d77216b732', { from: accounts[0] })
@@ -117,7 +120,7 @@ class App extends Component {
             <Tab label="Item Three" />
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer><TrustManagement web3={web3} /></TabContainer>}
+        {value === 0 && <TabContainer><TrustManagement web3={web3} accounts={accounts} links={links} trustGraph={trustGraph} /></TabContainer>}
         {value === 1 && <TabContainer><Tab2 /></TabContainer>}
         {value === 2 && <TabContainer><Threddit /></TabContainer>}
       </div>

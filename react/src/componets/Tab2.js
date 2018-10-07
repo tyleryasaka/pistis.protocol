@@ -3,8 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-import TrustGraph from '../../truffle/build/contracts/TrustGraph.json'
-
 const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
@@ -20,6 +18,7 @@ class TrustManagement extends Component {
     return (
       <Grid container spacing={24}>
         <Grid item xs={12}>
+          Tab 2
           <Paper className={classes.paper}>xs=12</Paper>
         </Grid>
         <Grid item xs={6}>
