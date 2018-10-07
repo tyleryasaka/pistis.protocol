@@ -30,7 +30,7 @@ All our our packages are managed with npm. More documentation will be available 
 
 ## Authors
 
-Gabriel Garcia, Tim (?), Marco Montesneri (?), Tyler Yasaka
+Gabriel Garcia, Tim (?), Marco Montesneri, Tyler Yasaka
 
 ## License
 
