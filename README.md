@@ -20,14 +20,10 @@ Pistis operates on a web of trust and uses graph analysis and probability theory
 
 Pistis is young and evolving, so current the implementation only a proof of concept. Currently Pistis is implemented on top of Ethereum using a single smart contract to store edges in the web of trust. [The Graph](https://thegraph.com) is used to efficiently retrieve events from the Ethereum blockchain. We have an npm package called pistis.js for easily querying trust confidence. We also have a UI to demonstrate the capabilities of Pistis, built using React.
 
-```
-Give examples
-```
-
 ### Development
 
 All our our packages are managed with npm. More documentation will be available in the near future.
 
 ## Authors
 
-Gabriel Garcia, Tim (?), Marco Montesneri, Tyler Yasaka
+Gabriel Garcia, Tim Wu, Marco Montesneri, Tyler Yasaka
