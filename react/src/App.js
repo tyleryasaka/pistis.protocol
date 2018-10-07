@@ -104,15 +104,15 @@ class App extends Component {
             textColor="primary"
             fullWidth
           >
-            <Tab label="My Trust" />
             <Tab label="My Graph" />
+            <Tab label="My Trust" />
             <Tab label="Threddit" />
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer><TrustManagement web3={web3} accounts={accounts} links={links} trustGraph={trustGraph} /></TabContainer>}
-        {value === 1 && (
+        {value === 0 && (
           <Tab2 links={links} accounts={accounts} />
         )}
+        {value === 1 && <TabContainer><TrustManagement web3={web3} accounts={accounts} links={links} trustGraph={trustGraph} /></TabContainer>}
         {value === 2 && <TabContainer><Threddit accounts={accounts} /></TabContainer>}
       </div>
     );
