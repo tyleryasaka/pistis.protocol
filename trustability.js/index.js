@@ -11,25 +11,29 @@ function makeGraph (links) {
 
 export default class Trustability {
   async get (from, to, callback) {
-    const myHeaders = new Headers()
-    myHeaders.append('Content-Type', 'application/json')
-    myHeaders.append('Accept', 'application/json')
+    if (!this.cachedLinks) {
+      const myHeaders = new Headers()
+      myHeaders.append('Content-Type', 'application/json')
+      myHeaders.append('Accept', 'application/json')
 
-    var myInit = {
-      method: 'POST',
-      headers: myHeaders,
-      mode: 'cors',
-      cache: 'default',
-      body: JSON.stringify({
-        query: ' { links { source target } } '
-      })
-    };
+      var myInit = {
+        method: 'POST',
+        headers: myHeaders,
+        mode: 'cors',
+        cache: 'default',
+        body: JSON.stringify({
+          query: ' { links { source target } } '
+        })
+      };
 
-    var myRequest = new Request('http://104.198.242.70/trustability/graphql')
+      var myRequest = new Request('http://104.198.242.70/trustability/graphql')
 
-    const res = await fetch(myRequest, myInit)
-    const data = await res.json()
-    const graph = makeGraph(data.data.links)
+      const res = await fetch(myRequest, myInit)
+      const data = await res.json()
+      this.cachedLinks = data.data.links
+    }
+    const graph = makeGraph(this.cachedLinks)
+
     return calculate(graph, from, to)
   }
 }

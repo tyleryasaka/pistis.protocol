@@ -66,11 +66,12 @@ const threads = [
 ]
 
 class Thredit extends Component {
-  componentDidMount () {
-    // this.props.fetchThreads()
+  constructor() {
+    super();
+    this.state = {};
   }
 
-  async renderCards () {
+  async componentDidMount () {
     const trustability = new Trustability();
     const { accounts } = this.props;
     let currentViewer = accounts ? accounts[0] : null;
@@ -91,7 +92,7 @@ class Thredit extends Component {
       return thread;
     }));
 
-    function compare(a, b) {
+    scoreThreads.sort((a, b) => {
       let comparison = 0;
       if (a['threadScore'] > b['threadScore']) {
         comparison = 1;
@@ -99,9 +100,13 @@ class Thredit extends Component {
         comparison = -1;
       }
       return comparison;
-    }
+    });
 
-    scoreThreads.sort(compare);
+    this.setState({ scoreThreads });
+  }
+
+  renderCards () {
+    const { scoreThreads } = this.state;
 
     return _.map(scoreThreads, thread => {
       var data = new Identicon(thread.id).toString();
