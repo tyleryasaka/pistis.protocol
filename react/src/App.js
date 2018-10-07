@@ -109,7 +109,12 @@ class App extends Component {
             <Tab label="Threddit" />
           </Tabs>
         </AppBar>
+<<<<<<< Updated upstream
         {value === 0 && (
+=======
+        {value === 0 && <TabContainer><TrustManagement web3={web3} accounts={accounts} links={links} trustGraph={trustGraph} /></TabContainer>}
+        {value === 1 && (
+>>>>>>> Stashed changes
           <Tab2 links={links} accounts={accounts} />
         )}
         {value === 1 && <TabContainer><TrustManagement web3={web3} accounts={accounts} links={links} trustGraph={trustGraph} /></TabContainer>}
