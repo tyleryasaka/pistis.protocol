@@ -4,7 +4,7 @@ import _ from 'underscore'
 const discount = 0.5
 const gradient = 1
 
-function calculate(graph, source, target, visited = [], currentDiscount = discount) {
+function calculate (graph, source, target, visited = [], currentDiscount = discount) {
   if (source === target) {
     return 1
   }
