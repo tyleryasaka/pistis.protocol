@@ -31,7 +31,3 @@ All our our packages are managed with npm. More documentation will be available 
 ## Authors
 
 Gabriel Garcia, Tim (?), Marco Montesneri, Tyler Yasaka
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
