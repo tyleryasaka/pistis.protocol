@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Graph from 'react-graph-vis'
-import Trustability from '../../../trustability.js/index'
+import Pistis from '../../../pistis.js/index'
 import Identicon from 'identicon.js';
 
 const styles = theme => ({
@@ -57,7 +57,7 @@ class TrustManagement extends Component {
 
   render() {
     const { classes, links } = this.props;
-    const trustability = new Trustability()
+    const trustability = new Pistis()
     const graph = trustability.graph(links)
     const visGraph = this.visGraph(graph)
 

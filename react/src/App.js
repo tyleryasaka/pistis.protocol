@@ -19,7 +19,6 @@ import purple from '@material-ui/core/colors/purple'
 
 import TrustGraph from '../../truffle/build/contracts/TrustGraph.json'
 import { getLinks } from './utils/trustGraph'
-import Trustability from '../../trustability.js/index'
 
 const CONTRACT_ADDRESS = '0xa3260d14aabffe747992f650b2bd5c3029da4b68'
 
