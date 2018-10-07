@@ -1,10 +1,10 @@
 
 import _ from 'lodash'
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import React, { Component } from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import Input from '@material-ui/core/Input'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
 
 const styles = theme => ({
   paper: {
@@ -15,19 +15,29 @@ const styles = theme => ({
 })
 
 class TrustManagement extends Component {
+
   constructor () {
     super()
-    this.state = {}
+    this.state = {
+    }
   }
 
-  addEntity () {
-    const { accounts, trustGraph } = this.props
-    trustGraph.addLink(this.state.input, { from: accounts[0] })
+  async addEntity () {
+    if (this.state.input) {
+      const { accounts, trustGraph } = this.props
+      let isLink = await trustGraph.isLinked(accounts[0], this.state.input)
+      if (!isLink) {
+        trustGraph.addLink(this.state.input, { from: accounts[0] })
+      }
+    }
   }
 
-  onRemoveClick (target) {
+  async onRemoveClick (target) {
     const { accounts, trustGraph } = this.props
-    trustGraph.removeLink(target, { from: accounts[0] })
+    let isLink = await trustGraph.isLinked(accounts[0], target)
+    if (isLink) {
+      trustGraph.removeLink(target, { from: accounts[0] })
+    }
   }
 
   updateInput (event) {
@@ -35,13 +45,6 @@ class TrustManagement extends Component {
   }
 
   renderConections () {
-    if (!this.state) {
-      return (
-        <h3>
-          Getting conections..
-        </h3>
-      )
-    }
     return _.map(this.props.links, entity => {
       return (
         <Grid item key={`${entity.source}${entity.target}`}>
@@ -79,4 +82,4 @@ class TrustManagement extends Component {
   }
 }
 
-export default withStyles(styles)(TrustManagement);
+export default withStyles(styles)(TrustManagement)

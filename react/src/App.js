@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PropTypes from 'prop-types';
-// import SwipeableViews from 'react-swipeable-views';
 import Web3 from 'web3';
 import contract from 'truffle-contract';
 
@@ -15,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import TrustManagement from './components/TrustManagement';
 import Tab2 from './components/Tab2';
 import Threddit from './components/Threddit';
+import CircularProgress from '@material-ui/core/CircularProgress'
+import purple from '@material-ui/core/colors/purple'
 
 import TrustGraph from '../../truffle/build/contracts/TrustGraph.json'
 import { getLinks } from './utils/trustGraph'
@@ -24,11 +25,10 @@ const CONTRACT_ADDRESS = '0xa3260d14aabffe747992f650b2bd5c3029da4b68'
 
 async function getWeb3() {
   let web3 = window.web3
-
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
   if (typeof web3 !== 'undefined') {
     // Use Mist/MetaMask's provider.
-    console.log('Injected web3 detected.');
+    console.log('Injected web3 detected.')
     return new Web3(web3.currentProvider)
   }
   console.error('web3 not found')
@@ -68,6 +68,7 @@ const styles = theme => ({
 class App extends Component {
   state = {
     value: 0,
+    loading: true
   };
 
   handleChange = (event, value) => {
@@ -75,36 +76,25 @@ class App extends Component {
   };
 
   handleChangeIndex = index => {
-    this.setState({ value: index });
-  };
+    this.setState({ value: index })
+  }
 
   async componentDidMount() {
     const web3 = await getWeb3()
     const accounts = await web3.eth.getAccounts()
     const trustGraph = await getDeployed(web3, CONTRACT_ADDRESS)
     const links = await getLinks()
-    // console.log('links', links)
-
-    // const trustability = new Trustability()
-    // const trustabilityScore = await trustability.get(
-    //   '0x627306090abab3a6e1400e9345bc60c78a8bef57',
-    //   '0x8e0f9edb52f762fc93a154953b67d3f7926ab1f6'
-    // )
-    // console.log('trustability', trustabilityScore)
-
-    this.setState({ web3, accounts, trustGraph, links })
-
-    // to add a link:
-    // trustGraph.addLink('0xf17f52151ebef6c7334fad080c5704d77216b732', { from: accounts[0] })
-
-    // to remove a link:
-    // trustGraph.removeLink('0xf17f52151ebef6c7334fad080c5704d77216b732', { from: accounts[0] })
+    this.setState({ web3, accounts, trustGraph, links, loading: false})
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <CircularProgress style={{ color: purple[500] }} thickness={7} />
+      )
+    }
     const { classes, theme } = this.props;
-    const { value, web3, accounts, trustGraph, links } = this.state;
-
+    const { value, web3, accounts, trustGraph, links } = this.state
     return (
       <div className="App">
         <AppBar position="static" color="default">
@@ -134,4 +124,4 @@ App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(App)
