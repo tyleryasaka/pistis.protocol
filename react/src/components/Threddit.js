@@ -93,16 +93,16 @@ class Thredit extends Component {
           return acc - trust
         }
       }, 0);
-      thread['threadScore'] = reduced;
+      thread['threadScore'] = Math.round(reduced * 100);
       return thread;
     }));
 
     scoreThreads.sort((a, b) => {
       let comparison = 0;
       if (a['threadScore'] > b['threadScore']) {
-        comparison = 1;
-      } else if(b['threadScore'] > a['threadScore']) {
         comparison = -1;
+      } else if(b['threadScore'] > a['threadScore']) {
+        comparison = 1;
       }
       return comparison;
     });

@@ -6,6 +6,8 @@ const discount = 0.5
 const gradient = 1
 
 function calculate (graph, source, target, visited = [], currentDiscount = discount) {
+  source = source.toLowerCase()
+  target = target.toLowerCase()
   if (source === target) {
     return 1
   }
