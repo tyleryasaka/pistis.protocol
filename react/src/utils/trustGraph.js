@@ -1,8 +1,8 @@
 // Returns Promise (resolves array of link objects)
-function getLinks() {
-  const myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/json');
-  myHeaders.append('Accept', 'application/json');
+function getLinks () {
+  const myHeaders = new Headers()
+  myHeaders.append('Content-Type', 'application/json')
+  myHeaders.append('Accept', 'application/json')
 
   var myInit = {
     method: 'POST',
@@ -14,13 +14,13 @@ function getLinks() {
     })
   };
 
-  const myRequest = new Request('http://104.198.242.70/trustability/graphql');
+  const myRequest = new Request('http://104.198.242.70/trustability/graphql')
 
   return fetch(myRequest, myInit)
   .then(r => r.json())
   .then((data) => {
-    return data.data.links;
-  });
+    return data.data.links
+  })
 }
 
 export {
