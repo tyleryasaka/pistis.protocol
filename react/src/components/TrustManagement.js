@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import Input from '@material-ui/core/Input'
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 
@@ -11,6 +11,9 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary
+  },
+  textField: {
+    width: '400px'
   }
 })
 
@@ -45,12 +48,16 @@ class TrustManagement extends Component {
   }
 
   renderConections () {
-    return _.map(this.props.links, entity => {
+    const { accounts, links } = this.props
+    const myLinks = links.filter(link => {
+      return link.source.toLowerCase() === accounts[0].toLowerCase()
+    })
+    return _.map(myLinks, link => {
       return (
-        <Grid item key={`${entity.source}${entity.target}`}>
-          {entity.target}
+        <Grid item key={`${link.source}${link.target}`}>
+          {link.target}
           <Button
-            onClick={() => { this.onRemoveClick(entity.target) }}
+            onClick={() => { this.onRemoveClick(link.target) }}
           >
             Remove
           </Button>
@@ -60,11 +67,13 @@ class TrustManagement extends Component {
   }
 
   render () {
+    const { classes } = this.props
     return (
       <Grid container spacing={24}>
         <Grid item xs={12}>
-          <Input
-            placeholder='Add new entity you trust'
+          <TextField
+            className={classes.textField}
+            placeholder='Who do you trust?'
             onChange={this.updateInput.bind(this)}
           />
           <Button

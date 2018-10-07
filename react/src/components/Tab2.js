@@ -62,7 +62,6 @@ class TrustManagement extends Component {
       const id = node.v;
       const trustabilityScore = Math.round(trustabilities[id] * 100) / 100
       const label = String(trustabilityScore);
-      console.log('label', label)
       const data = new Identicon(id).toString();
       const image = "data:image/png;base64," + data;
       let fontColor

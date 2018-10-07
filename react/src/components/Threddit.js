@@ -146,7 +146,7 @@ class Thredit extends Component {
       var data = new Identicon(thread.id).toString();
       var avatarPic = "data:image/png;base64," + data;
       return (
-        <Grid item xs={8} justify="center">
+        <Grid item xs={8} justify="center" key={thread.id}>
           <Card className={classes.card}>
             <CardHeader
               avatar={
