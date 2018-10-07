@@ -143,7 +143,7 @@ class Thredit extends Component {
   render () {
     return (
       <div>
-        <h3>Threads</h3>
+        <h3>Threds</h3>
         <Grid container spacing={24} justify="center">
           {this.renderCards()}
         </Grid>
