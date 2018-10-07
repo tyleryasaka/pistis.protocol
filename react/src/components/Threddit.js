@@ -76,19 +76,24 @@ class Thredit extends Component {
     const { accounts } = this.props;
     let currentViewer = accounts ? accounts[0] : null;
     let scoreThreads = await Promise.all(_.map(threads, async thread => {
-      let threadScore = 0;
-      for (let vote in thread.votes) {
+      const resolved = await Promise.all(_.map(thread.votes, async vote => {
         let currTrust = await trustability.get(
           currentViewer,
           vote.address
         );
-        if (vote.type === 'up') {
-          threadScore += currTrust;
-        } else {
-          threadScore -= currTrust;
+        return {
+          type: vote.type,
+          trust: currTrust
         }
-      }
-      thread['threadScore'] = threadScore;
+      }))
+      const reduced = resolved.reduce((acc, { type, trust }) => {
+        if (type === 'up') {
+          return acc + trust
+        } else {
+          return acc - trust
+        }
+      }, 0);
+      thread['threadScore'] = reduced;
       return thread;
     }));
 
@@ -108,7 +113,7 @@ class Thredit extends Component {
   renderCards () {
     const { scoreThreads } = this.state;
 
-    return _.map(scoreThreads, thread => {
+    return scoreThreads && _.map(scoreThreads, thread => {
       var data = new Identicon(thread.id).toString();
       var avatarPic = "data:image/png;base64," + data;
       return (
@@ -126,7 +131,7 @@ class Thredit extends Component {
                 {thread.text}
               </Typography>
               <Typography paragraph>
-                Upvotes: {10}
+                Upvotes: {thread.threadScore}
               </Typography>
             </CardContent>
           </Card>

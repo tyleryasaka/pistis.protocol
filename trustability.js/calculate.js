@@ -1,4 +1,5 @@
 import _ from 'underscore'
+import graphlib from '@dagrejs/graphlib'
 
 // TODO make configurable
 const discount = 0.5
@@ -13,7 +14,7 @@ function calculate (graph, source, target, visited = [], currentDiscount = disco
   }
   let newVisited = visited.slice(0) // clone array
   newVisited.push(source)
-  const successors = graph.successors(source)
+  const successors = graph.successors(source) || []
   const doubts = successors.map((successor) => {
     const fromSuccessor = calculate(
       graph,

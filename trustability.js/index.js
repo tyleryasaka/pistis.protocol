@@ -10,7 +10,7 @@ function makeGraph (links) {
 }
 
 export default class Trustability {
-  async get (from, to, callback) {
+  async get (from, to) {
     if (!this.cachedLinks) {
       const myHeaders = new Headers()
       myHeaders.append('Content-Type', 'application/json')
