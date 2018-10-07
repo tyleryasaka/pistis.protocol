@@ -10,7 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Identicon from 'identicon.js';
 import Grid from '@material-ui/core/Grid';
 import Upvote from 'react-upvote';
-import Trustability from '../../../trustability.js/index'
+import Pistis from '../../../pistis.js/index'
 
 const styles = theme => ({
   paper: {
@@ -72,7 +72,7 @@ class Thredit extends Component {
   }
 
   async componentDidMount () {
-    const trustability = new Trustability();
+    const trustability = new Pistis();
     const { accounts } = this.props;
     let currentViewer = accounts ? accounts[0] : null;
     let scoreThreads = await Promise.all(_.map(threads, async thread => {

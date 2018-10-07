@@ -9,7 +9,7 @@ function makeGraph (links) {
   return graph
 }
 
-export default class Trustability {
+export default class Pistis {
   async get (from, to) {
     if (!this.cachedLinks) {
       const myHeaders = new Headers()
