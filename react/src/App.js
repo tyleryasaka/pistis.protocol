@@ -12,9 +12,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
-import TrustManagement from './componets/TrustManagement';
-import Tab2 from './componets/Tab2';
-import Threddit from './componets/Threddit';
+import TrustManagement from './components/TrustManagement';
+import Tab2 from './components/Tab2';
+import Threddit from './components/Threddit';
 
 import TrustGraph from '../../truffle/build/contracts/TrustGraph.json'
 import { getLinks } from './utils/trustGraph'
@@ -117,12 +117,12 @@ class App extends Component {
           >
             <Tab label="My Trust" />
             <Tab label="Item Two" />
-            <Tab label="Item Three" />
+            <Tab label="Threddit" />
           </Tabs>
         </AppBar>
         {value === 0 && <TabContainer><TrustManagement web3={web3} accounts={accounts} links={links} trustGraph={trustGraph} /></TabContainer>}
         {value === 1 && <TabContainer><Tab2 /></TabContainer>}
-        {value === 2 && <TabContainer><Threddit /></TabContainer>}
+        {value === 2 && <TabContainer><Threddit accounts={accounts} /></TabContainer>}
       </div>
     );
   }
