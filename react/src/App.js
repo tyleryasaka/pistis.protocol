@@ -121,7 +121,9 @@ class App extends Component {
           </Tabs>
         </AppBar>
         {value === 0 && <TabContainer><TrustManagement web3={web3} accounts={accounts} links={links} trustGraph={trustGraph} /></TabContainer>}
-        {value === 1 && <TabContainer><Tab2 /></TabContainer>}
+        {value === 1 && (
+          <Tab2 links={links} />
+        )}
         {value === 2 && <TabContainer><Threddit accounts={accounts} /></TabContainer>}
       </div>
     );

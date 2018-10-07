@@ -36,4 +36,9 @@ export default class Trustability {
 
     return calculate(graph, from, to)
   }
+
+  graph(links) {
+    const graph = makeGraph(links)
+    return graphlib.json.write(graph)
+  }
 }

@@ -20,5 +20,5 @@ export function linkRemoved(event: LinkRemoved): void {
 
   let key = event.params.source.toHex() + event.params.target.toHex()
 
-  store.set('Link', key, null)
+  store.remove('Link', key)
 }
