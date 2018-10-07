@@ -6,7 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import CardHeader from '@material-ui/core/CardHeader';
+import CardActions from '@material-ui/core/CardActions';
+import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
+import Icon from '@material-ui/core/Icon';
 import Identicon from 'identicon.js';
 import Grid from '@material-ui/core/Grid';
 import Upvote from 'react-upvote';
@@ -17,13 +20,38 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary
-  }
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
+  actions: {
+    display: 'flex',
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    marginLeft: 'auto',
+    [theme.breakpoints.up('sm')]: {
+      marginRight: -8,
+    },
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  icon: {
+    margin: theme.spacing.unit * 2,
+    marginBottom: '-5px',
+  },
 })
 
 const threads = [
   {
     id: '0xc5fdf4076b8f3a5357c5e395ab970b5b54098fef',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    text: '"Journey of a thousand miles begins with one step."',
+    author: "Lao Tzu",
     votes: [
       {
         type: 'up',
@@ -37,7 +65,8 @@ const threads = [
   },
   {
     id: '0x821aea9a577a9b44299b9c15c88cf3087f3b5544',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    text: '“Everything is hard before is easy.”',
+    author: "Brian Tracy",
     votes: [
       {
         type: 'up',
@@ -51,7 +80,7 @@ const threads = [
   },
   {
     id: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    text: '"Shipping beats perfection."',
     votes: [
       {
         type: 'up',
@@ -110,7 +139,7 @@ class Thredit extends Component {
     this.setState({ scoreThreads });
   }
 
-  renderCards () {
+  renderCards (classes) {
     const { scoreThreads } = this.state;
 
     return scoreThreads && _.map(scoreThreads, thread => {
@@ -118,22 +147,28 @@ class Thredit extends Component {
       var avatarPic = "data:image/png;base64," + data;
       return (
         <Grid item xs={8} justify="center">
-          <Card>
+          <Card className={classes.card}>
             <CardHeader
               avatar={
-                <Avatar src={avatarPic}/>
+                <Avatar src={avatarPic} className={classes.avatar} />
               }
               title={thread.id}
-              subheader="September 14th, 2018"
+              subheader="September 14, 2016"
             />
             <CardContent>
-              <Typography component="h2" variant="headline">
-                {thread.text}
-              </Typography>
-              <Typography paragraph>
-                Upvotes: {thread.threadScore}
+              <Typography component="p" variant="headline">
+                {thread.text}{thread.author && ` - ${thread.author}`}
               </Typography>
             </CardContent>
+            <CardActions className={classes.actions} disableActionSpacing>
+
+              <Typography component="p" variant="headline">
+                <Icon color="disabled" fontSize="large" className={classes.icon}>
+                  thumb_up
+                </Icon>
+                {thread.threadScore}
+              </Typography>
+            </CardActions>
           </Card>
         </Grid>
       )
@@ -141,15 +176,16 @@ class Thredit extends Component {
   }
 
   render () {
+    const { classes, theme } = this.props;
     return (
       <div>
         <h3>Threds</h3>
         <Grid container spacing={24} justify="center">
-          {this.renderCards()}
+          {this.renderCards(classes)}
         </Grid>
       </div>
     )
   }
 }
 
-export default withStyles(styles)(Thredit)
+export default withStyles(styles, { withTheme: true })(Thredit)
