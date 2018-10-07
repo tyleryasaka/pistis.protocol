@@ -41,7 +41,7 @@ class TrustManagement extends Component {
         id,
         shape: 'image',
         image,
-        color: '#ddd',
+        color: '#aaa',
         borderWidth: 0
       };
     })

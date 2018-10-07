@@ -106,7 +106,7 @@ class App extends Component {
             fullWidth
           >
             <Tab label="My Trust" />
-            <Tab label="Item Two" />
+            <Tab label="My Graph" />
             <Tab label="Threddit" />
           </Tabs>
         </AppBar>
